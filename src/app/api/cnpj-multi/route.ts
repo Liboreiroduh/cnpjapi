@@ -64,16 +64,11 @@ export async function GET(request: NextRequest) {
     try {
       console.log(`Tentando API: ${api.name} - ${api.url}`);
       
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000);
-      
       const response = await fetch(api.url, {
         method: 'GET',
         headers: api.headers,
-        signal: controller.signal
+        timeout: 10000
       });
-      
-      clearTimeout(timeoutId);
       
       if (response.ok) {
         const data = await response.json();

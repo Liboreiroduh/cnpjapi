@@ -300,7 +300,7 @@ export default function ConsultaCNPJMulti() {
             <AlertDescription>
               <strong>Fonte:</strong> {data._api_info.fonte}
               <div className="text-xs text-zinc-600 mt-1">
-                Consultado em: {data._api_info.timestamp ? new Date(data._api_info.timestamp).toLocaleString('pt-BR') : 'N/A'}
+                Consultado em: {new Date(data._api_info.timestamp).toLocaleString('pt-BR')}
               </div>
             </AlertDescription>
           </Alert>

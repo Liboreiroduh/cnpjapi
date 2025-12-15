@@ -27,19 +27,14 @@ export async function GET(request: NextRequest) {
     
     console.log(`Consultando API: ${apiUrl}`);
     
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
-    
     const response = await fetch(apiUrl, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
         'User-Agent': 'Mozilla/5.0 (compatible; CNPJ-Query/1.0)'
       },
-      signal: controller.signal
+      timeout: 10000
     });
-    
-    clearTimeout(timeoutId);
     
     if (response.ok) {
       const data = await response.json();
